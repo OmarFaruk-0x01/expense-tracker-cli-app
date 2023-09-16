@@ -47,8 +47,9 @@ class State implements JsonSerializable
      * @throws Exception
      */
     function addIncomeCategory(string $category): void {
-        if  (gettype(array_search($category, $this->incomeCategories)) == "integer")
+        if  (in_array($category, $this->incomeCategories)){
             throw new Exception('Category already exists');
+        }
         $this->incomeCategories[] = $category;
         $this->sync();
     }
@@ -68,8 +69,9 @@ class State implements JsonSerializable
      * @throws Exception
      */
     function addExpenseCategory(string $category): bool {
-        if  (gettype(array_search($category, $this->expenseCategories)) == "integer")
+        if  (in_array($category, $this->expenseCategories)){
             throw new Exception('Category already exists');
+        }
         $this->expenseCategories[] = $category;
         $this->sync();
         return true;
