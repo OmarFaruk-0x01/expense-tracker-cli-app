@@ -5,7 +5,6 @@
 Create an Income-Expense Tracker initially run on CLI. Trying to follow OOP in this whole project and also design principals. Implement storage for persisting data.
 
 # Core Parts
-This three core parts should be open for extension and close for modification.
 - Feature
 - View
 - Storage
