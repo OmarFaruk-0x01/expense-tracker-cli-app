@@ -6,6 +6,9 @@ readonly class FileStorage implements Storage
 {
     public function __construct(private string $filename)
     {
+        if (!file_exists($this->filename)){
+            $this->write(new State($this));
+        }
     }
 
     function write(State $state): void
@@ -13,15 +16,8 @@ readonly class FileStorage implements Storage
         file_put_contents($this->filename, json_encode($state));
     }
 
-    public function load(): State
+    public function load(): mixed
     {
-        $data = json_decode(file_get_contents($this->filename));
-
-        return new State($this,
-                incomes: $data->incomes ?? [],
-                expenses: $data->expenses ?? [],
-                incomeCategories: $data->incomeCategories ?? [],
-                expenseCategories: $data->expenseCategories ?? []);
+        return json_decode(file_get_contents($this->filename));
     }
-
 }
