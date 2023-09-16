@@ -21,3 +21,27 @@ This three core parts should be open for extension and close for modification.
 - **View**
   - Easily change the view layer by implementing the `View` interface.
 
+# Features
+
+- Add Category
+- View Category
+- Add Income
+- View Income
+- Add Expense
+- View Expense
+- Gracefully Shutdown 
+
+Every input will go through a validation process.
+
+# Usage
+```bash
+git clone https://github.com/OmarFaruk-0x01/expense-tracker
+
+cd expense-tracker
+
+chmod +x main.php
+  
+./main.php # Linux / MacOs / GitBash
+  
+php main.php # Windows and all other platform
+```
