@@ -21,11 +21,11 @@ class State implements JsonSerializable
     /**
      * @var array<string>
      */
-    private array $incomeCategories = [],
+    private array $incomeCategories = ["Salary", "SideProjects"], // Default Categories for demo purpose
     /**
      * @var array<string>
      */
-    private array $expenseCategories = [],
+    private array $expenseCategories = ["Gift", "Food"], // Default Categories for demo purpose
     )
     {
 
