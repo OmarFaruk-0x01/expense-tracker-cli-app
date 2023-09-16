@@ -11,19 +11,25 @@ require_once __DIR__ . "/Feature/ViewCategories.php";
 require_once __DIR__ . "/Feature/ExitApp.php";
 require_once __DIR__ . "/Kernel/Kernel.php";
 
+$storage = new FileStorage("./db.json");
+$data = $storage->load();
 
-$file = new FileStorage("./db.json");
-$state = $file->load();
+$state = new State($storage,
+                incomes: $data->incomes ?? [],
+                expenses: $data->expenses ?? [],
+                incomeCategories: $data->incomeCategories ?? [],
+                expenseCategories: $data->expenseCategories ?? []);
 
 $view = new ConsoleView($state);
-$app = new Kernel(view: $view, state: $state);
 
-$app->registerCommand(1, new AddIncome($state, $view));
-$app->registerCommand(2, new ViewIncome($state, $view));
-$app->registerCommand(3, new AddExpense($state, $view));
-$app->registerCommand(4, new ViewExpense($state, $view));
-$app->registerCommand(5, new AddCategory($state, $view));
-$app->registerCommand(6, new ViewCategories($state, $view));
+$app = new Kernel($state, $view);
+
+$app->registerCommand(1, new AddCategory($state, $view));
+$app->registerCommand(2, new ViewCategories($state, $view));
+$app->registerCommand(3, new AddIncome($state, $view));
+$app->registerCommand(4, new ViewIncome($state, $view));
+$app->registerCommand(5, new AddExpense($state, $view));
+$app->registerCommand(6, new ViewExpense($state, $view));
 $app->registerCommand(7, new ExitApp($state, $view));
 
 

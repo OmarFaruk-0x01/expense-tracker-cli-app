@@ -14,8 +14,8 @@ class Kernel
     private array $features = [];
 
     public function __construct(
-        protected View $view,
         private readonly State $state,
+        protected View $view,
     )
     {
     }
