@@ -14,15 +14,17 @@ class AddCategory extends Feature
     {
 
         $category = $this->view->getInput("Enter Category: ");
-        $type = $this->repeatAsking("[I]ncome / [E]xpense: ",
-            fn ($type) => strtolower($type) != 'i' && strtolower($type) != 'e');
+        $type = $this->repeatAsking("[I]ncome / [E]xpense / [C]ancel: ",
+            fn ($type) => strtolower($type) != 'i' && strtolower($type) != 'e' && strtolower($type) != 'c');
 
         try{
+            if ($type == 'c') return;
             if ($type == 'i') $this->state->addIncomeCategory($category);
             if ($type == 'e') $this->state->addExpenseCategory($category);
             $this->view->renderMessage("Category Added\n", MessageType::Success);
         }catch (Exception  $e){
-            $this->view->renderMessage(sprintf('%s\n', $e->getMessage()), MessageType::Failed);
+            $this->view->renderMessage("{$e->getMessage()}\n", MessageType::Failed);
+            $this->run();
         }
     }
 
