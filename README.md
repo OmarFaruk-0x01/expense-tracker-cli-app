@@ -1,5 +1,4 @@
 # Income-Expense Tracker
-**Assignment-2**
 
 # Objectives
 Create an Income-Expense Tracker initially run on CLI. Trying to follow OOP in this whole project and also design principals. Implement storage for persisting data.
